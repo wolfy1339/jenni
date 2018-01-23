@@ -10,6 +10,7 @@ More info:
  * Phenny: http://inamidst.com/phenny/
 """
 
+from __future__ import print_function
 import sys, os, time, threading, signal
 import bot
 
@@ -43,7 +44,7 @@ def run_jenni(config):
 
     try: Watcher()
     except Exception, e:
-        print >> sys.stderr, 'Warning:', e, '(in __init__.py)'
+        print('Warning:', e, '(in __init__.py)', file=sys.stderr)
 
     while True:
         try: connect(config)
@@ -54,7 +55,7 @@ def run_jenni(config):
             break
 
         warning = 'Warning: Disconnected. Reconnecting in %s seconds...' % delay
-        print >> sys.stderr, warning
+        print(warning, file=sys.stderr)
         time.sleep(delay)
 
 def run(config):
@@ -64,4 +65,4 @@ def run(config):
     else: t.start()
 
 if __name__ == '__main__':
-    print __doc__
+    print(__doc__)
